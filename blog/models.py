@@ -176,27 +176,27 @@ class BlogTag(Tag):
     class Meta:
         proxy = True
 # Two Column block
-class TwoColumnBlock(blocks.StructBlock):
-
-    background = blocks.ChoiceBlock(default="white")
-    left_column = blocks.StreamBlock([
-            ('heading', blocks.CharBlock(classname="full title")),
-            ('paragraph', blocks.RichTextBlock()),
-            ('image', ImageChooserBlock()),
-            ('embedded_video', EmbedBlock()),
-        ], icon='arrow-left', label='Left column content')
-
-    right_column = blocks.StreamBlock([
-            ('heading', blocks.CharBlock(classname="full title")),
-            ('paragraph', blocks.RichTextBlock()),
-            ('image', ImageChooserBlock()),
-            ('embedded_video', EmbedBlock()),
-        ], icon='arrow-right', label='Right column content')
-
-    class Meta:
-        template = 'yourapp/blocks/two_column_block.html'
-        icon = 'placeholder'
-        label = 'Two Columns'
+# class TwoColumnBlock(blocks.StructBlock):
+#
+#     background = blocks.ChoiceBlock(default="white")
+#     left_column = blocks.StreamBlock([
+#             ('heading', blocks.CharBlock(classname="full title")),
+#             ('paragraph', blocks.RichTextBlock()),
+#             ('image', ImageChooserBlock()),
+#             ('embedded_video', EmbedBlock()),
+#         ], icon='arrow-left', label='Left column content')
+#
+#     right_column = blocks.StreamBlock([
+#             ('heading', blocks.CharBlock(classname="full title")),
+#             ('paragraph', blocks.RichTextBlock()),
+#             ('image', ImageChooserBlock()),
+#             ('embedded_video', EmbedBlock()),
+#         ], icon='arrow-right', label='Right column content')
+#
+#     class Meta:
+#         template = 'yourapp/blocks/two_column_block.html'
+#         icon = 'placeholder'
+#         label = 'Two Columns'
 
 LIMIT_AUTHOR_CHOICES = getattr(settings, 'BLOG_LIMIT_AUTHOR_CHOICES_GROUP', None)
 if LIMIT_AUTHOR_CHOICES:
@@ -210,7 +210,7 @@ class BlogPage(Page):
         ('heading', blocks.CharBlock(classname="full title", icon="title")),
         ('paragraph', blocks.RichTextBlock()),
         ('image', ImageChooserBlock(icon="image")),
-        ('two_columns', TwoColumnBlock()),
+        # ('two_columns', TwoColumnBlock()),
         ('embedded_video', EmbedBlock(icon="media")), ], null=True, blank=True, verbose_name=_('body'),)
     tags = ClusterTaggableManager(through=BlogPageTag, blank=True)
     date = models.DateField(

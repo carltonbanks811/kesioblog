@@ -13,6 +13,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         {# Global stylesheets #}
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/topbar.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/carvertiseblog.css' %}">
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
 
@@ -22,12 +25,109 @@
     </head>
 
     <body class="{% block body_class %}{% endblock %}">
-        {% wagtailuserbar %}
 
+
+
+            {% wagtailuserbar %}
         {% block content %}{% endblock %}
+        <footer>
+            <!-- <div class='footer_logo'>
+                <img src='img/landinglogo.png'>
+            </div> -->
+            <!-- <div class='social'>
+              <ul class='social_list'>
+                <a href="https://www.facebook.com/carvertise"><li><i class="fa fa-facebook"></i></li></a>
+                <a href="https://www.facebook.com/carvertise"><li><i class="fa fa-twitter"></i></li></a>
+                <a href="https://www.facebook.com/carvertise"><li><i class="fa fa-linkedin"></i></li></a>
+                <a href="https://www.facebook.com/carvertise"><li><i class="fa fa-instagram"></i></li></a>
+                <a href="https://www.facebook.com/carvertise"><li><i class="fa fa-youtube"></i></li></a>
+                <a href="https://www.facebook.com/carvertise"><li><i class="fa fa-yelp"></i></li></a>
+              </ul>
+            </div> -->
+            <div class='footer_tabs_area'>
+
+              <ul class='footer_tabs_list'><a href='../driver'><h3  class='clickable'>Carvertiser</h3></a>
+                <!-- <a href="../about"><li>About Us</li></a> -->
+                <a href="../faq"><li>FAQ</li></a>
+
+                <a href='../driver'><li>Apply to Drive</li></a>
+              </ul>
+            </div>
+
+            <div class='footer_tabs_area'>
+
+              <ul class='footer_tabs_list'><a  href='../agencies'><h3  class='clickable'>Brands & Agencies</h3></a>
+                <!-- <a href="../about"><li>About Us</li></a> -->
+                <a href="../gallery"><li>Gallery</li></a>
+                <a href="../case_study"><li>Case Study</li></a>
+                <a href="../press"><li>Press</li></a>
+                <a href="../faq"><li>FAQ</li></a>
+              </ul>
+            </div>
+
+            <div class='footer_tabs_area footer_contact'>
+              <ul class='contact_list'><h3>Contact</h3>
+                <!-- <li><i class="fa fa-phone"></i> 302.296.8410</li> -->
+                <!-- <br> -->
+                <li><i class="fa fa-envelope-o"></i> Driver: carvertiser@carvertise.com<br>
+                <i class="fa fa-envelope-o"></i> Brands: brands@carvertise.com
+                </li>
+                <li><i class="fa fa-building-o"></i> 1313 N. Market St Wilmington, DE 19801</li>
+
+
+            </div>
+
+            <div class='footer_tabs_area'>
+              <ul class='footer_tabs_list_social'><h3>Follow Us</h3>
+                <li>
+                  <a class='social_item' href="https://www.facebook.com/carvertise"><i class="fa fa-facebook"></i></a>
+                  <a class='social_item' href="https://www.linkedin.com/company/9267158?trk=tyah&trkInfo=clickedVertical%3Acompany%2CclickedEntityId%3A9267158%2Cidx%3A1-1-1%2CtarId%3A1454530660453%2Ctas%3Acarvertise"><i class="fa fa-linkedin"></i></a>
+                </li>
+                <li>
+                  <a class='social_item' href="https://www.youtube.com/channel/UCjI3NrlV03CwIJ1DikSFfHA"><i class="fa fa-youtube"></i></a>
+                  <a class='social_item' href="https://twitter.com/carvertise"><i class="fa fa-twitter"></i></a>
+                </li>
+                <li>
+                  <a class='social_item' href="https://www.instagram.com/carvertise/"><i class="fa fa-instagram"></i></a>
+                  <a class='social_item' href="http://www.yelp.com/biz/carvertise-wilmington"><i class="fa fa-yelp"></i></a>
+                </li>
+                <!-- <a href="../case_study"><li>Case study</li></a>
+                <a href="../press"><li>Press</li></a>
+                <a href="../press"><li>FAQ</li></a> -->
+              </ul>
+            </div>
+
+            <div class='footer_tabs_area footer_contact_mobile'>
+              <ul class='contact_list'><h3>Contact</h3>
+                <!-- <li><i class="fa fa-phone"></i> 302.296.8410</li> -->
+                <!-- <br> -->
+
+              <li><i class="fa fa-building-o"></i> 1313 N. Market St Wilmington, DE 19801</li>
+
+
+                <li><i class="fa fa-envelope-o"></i> Driver: carvertiser@carvertise.com</li>
+                <li><i class="fa fa-envelope-o"></i> Brands: brands@carvertise.com
+                </li>
+
+            </div>
+
+
+
+            <div class='rights'>
+              © Carvertise Inc.2016
+            </div>
+
+            <!-- <div class='bottom_carline'>
+              <img src='img/carline.gif'>
+            </div> -->
+
+          </footer>
+
+
 
         {# Global javascript #}
         <script type="text/javascript" src="{% static 'js/jquery.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/topbar.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/carvertiseblog.js' %}"></script>
         <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
 
@@ -39,7 +139,7 @@
             $("#wrapper").toggleClass("toggled");
         });
         </script>
-  
+
         {% block extra_js %}
             {# Override this in templates to add extra javascript #}
         {% endblock %}

@@ -1,34 +1,123 @@
-{% load wagtailcore_tags static %}
 
+{% load wagtailcore_tags static %}
+{% if include_context == "index_page" %}
 <a class="blog-post-link" href="{% pageurl blog %}">
   <h2>{{ blog.title }}</h2>
 </a>
 
 {% if blog.date %}
 <div class="meta date">
-  {{ blog.date|date:"F jS, Y" }}
-  {{ blog.author }}
+  <i class="fa fa-calendar-o"></i> {{ blog.date|date:"F jS, Y" }}
+  <i class="fa fa-pencil"></i> {{ blog.author }}
 </div>
 {% endif %}
-{% if include_context == "index_page" %}
+
 <div class="blog-intro">
   <div class="blogmain">
+    <div class="row">
+
+
+<div  class="col-md-12 col-lg-12">
+
 
   {% for block in blog.body %}
 
-  {% if block.block_type == 'heading' or block.block_type == 'paragraph' %}
-  {{ block.value|truncatewords_html:70 }}
+    {% if block.block_type == 'heading' %}
+    <div style="padding-left:6px;" class="myheading">
+      {{block.value}}
+      </div>
+    {% endif %}
+
+    {% if block.block_type == 'paragraph' %}
+    <div class="myparagraph">
+
+    </div>
+    {% endif %}
+    {% if block.block_type == 'image' %}
+    <div class="myimage">
+
+    </div>
+    {% endif %}
+    {% if block.block_type == 'embedded_video' %}
+    <div class="myvideo">
+
+    </div>
+    {% endif %}
+  {% if block.block_type == 'paragraph' %}
+    <div style="padding-left:6px;" class='index-content'>
+    {#{{ block.value|truncatewords_html:30 }}#}
+  </div>
   {% endif %}
 
   {% endfor %}
+      </div>
+      </div>
   {#<a href="{% pageurl blog %}">Read the rest of this entry &raquo;</a>#}
 </div>
 </div>
 {% else %}
+<!-- Top bar  -->
+  <header  class="nav-down post_nav">
+      <div class='carvertise_logo_top'><a href="carvertise.com">
+      <img src='http://www.carvertise.com/img/logo.gif'>
+    </a>
+      </div>
+      <div class='tabs_top'>
+        <a class='single_tab' href="carvertise.com/gallery">gallery</a>
+        <a class='single_tab' href="carvertise.com/case_study">case study</a>
+        <a class='single_tab' href="carvertise.com/press">press</a>
+        <a class='single_tab' href="/blog">blog</a>
+        <a class='single_tab' href="carvertise.com/faq">FAQ</a>
+      </div>
+      <div class='tabs_top_mobile' onclick='mobile_menu();'>
+        <img src='http://www.tax-consulting-group-san-diego.com/images/taxes-menu-icon.png'>
+
+      </div>
+  </header>
 <div class="blog-body">
+<div class="blog-title">
+  <h2>
+  {{ blog.title }}
+</h2>
+</div>
+<div class="meta">
+  <div class="tags">
+    {% if blog.tags.all %}
+    Tags:
+    {% for tag in blog.tags.all %}
+    <a href="{% url 'blog:tag' tag.slug %}/">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
+    {% endfor %}
+    {% endif %}
+  </div>
+
+  </div>
+
+<div class="blog-date">
+  {% if blog.date %}
+  <div class="meta date">
+    {{ blog.date|date:"F jS, Y" }}
+    {{ blog.author }}
+  </div>
+  {% endif %}
+  </div>
+  <div class="blog-content">
+
+
   {% for block in blog.body  %}
+  {% if block.block_type == 'heading' %}
+  <div class="myheading">
+    {{block.value}}
+    </div>
+  {%else%}
     {{ block }}
+  {% endif %}
+
+
+
+
+
   {% endfor %}
+</div>
 </div>
 {% endif %}
 
@@ -39,31 +128,4 @@
   <span class="st_plusone_large" st_title="{{ blog.title }}" st_url="{{ SITE_URL }}{% pageurl blog %}" displayText="Google +1"></span>
   <span class="st_email_large" st_title="{{ blog.title }}" st_url="{{ SITE_URL }}{% pageurl blog %}" displayText="Email"></span>
   <span class="st_sharethis_large" st_title="{{ blog.title }}" st_url="{{ SITE_URL }}{% pageurl blog %}" displayText="ShareThis"></span>
-</div>
-
-<div class="meta">
-  <div class="tags">
-    {% if blog.tags.all %}
-    Tags:
-    {% for tag in blog.tags.all %}
-    <a href="{% url 'blog:tag' tag.slug %}/">{{ tag }}</a>{% if not forloop.last %}, {% endif %}
-    {% endfor %}
-    {% endif %}
-  </div>
-  <div class="tags-and-comments">
-    {% if blog.categories.all %}
-    Posted in
-    {% for cat in blog.categories.all %}
-    <a href="{% url 'blog:category' cat.category.slug %}">{{ cat.category.name }}</a>{% if not forloop.last %}, {% endif %}
-    {% endfor %} |
-    {% endif %}
-
-    <div id="comments" class="comments">
-      {% if COMMENTS_APP == 'django_comments_xtd' %}
-      {% include 'blog/blog_post_comments_xtd_link.html' with blog=blog %}
-      {% elif False %}
-      <a href="{% pageurl blog %}#disqus_thread">No Comments</a>
-      {% endif %}
-    </div>
-  </div>
 </div>
